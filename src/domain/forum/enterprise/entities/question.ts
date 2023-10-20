@@ -1,14 +1,16 @@
-import { randomUUID } from "node:crypto"
-import { Slug } from "./value-objects/slug"
-import { Entity } from "../../core/entities/entity"
-import { UniqueEntityId } from "../../core/entities/unique-entity-id"
-import { Optional } from "../../core/types/optional"
-import dayjs from "dayjs"
+import { randomUUID } from 'node:crypto'
+import { Slug } from './value-objects/slug'
+import { Entity } from "../../../../core/entities/entity"
+import dayjs from 'dayjs'
+import { UniqueEntityId } from "../../../../core/entities/unique-entity-id"
 
-interface QuestionProps {
-  title: string,
-  content: string,
-  slug: Slug,
+
+import { Optional } from '../../../../core/types/optional'
+
+export interface QuestionProps {
+  title: string
+  content: string
+  slug: Slug
   authorId: UniqueEntityId
   bestAnswerId?: UniqueEntityId
   createdAt: Date
@@ -16,10 +18,10 @@ interface QuestionProps {
 }
 
 export class Question extends Entity<QuestionProps> {
-
   get content() {
     return this.props.content
   }
+
   get authorId() {
     return this.props.authorId
   }
@@ -56,7 +58,6 @@ export class Question extends Entity<QuestionProps> {
     this.props.updatedAt = new Date()
   }
 
-
   set title(title: string) {
     this.props.title = title
     this.props.slug = Slug.createFromText(title)
@@ -68,20 +69,24 @@ export class Question extends Entity<QuestionProps> {
     this.touch()
   }
 
-
   set content(content: string) {
     this.props.content = content
     this.touch()
   }
 
-  static create(props: Optional<QuestionProps, "createdAt" | 'slug'>, id?: UniqueEntityId) {
-    const question = new Question({
-      ...props,
-      slug: props.slug ?? Slug.createFromText(props.title),
-      createdAt: new Date(),
-    }, id)
+  static create(
+    props: Optional<QuestionProps, 'createdAt' | 'slug'>,
+    id?: UniqueEntityId,
+  ) {
+    const question = new Question(
+      {
+        ...props,
+        slug: props.slug ?? Slug.createFromText(props.title),
+        createdAt: new Date(),
+      },
+      id,
+    )
 
     return question
   }
-
 }
