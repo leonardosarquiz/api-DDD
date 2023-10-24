@@ -43,7 +43,7 @@ describe("Fetch Question Answers", () => {
 
 
 
-  it.skip('should be able to fetch paginated questions answers', async () => {
+  it('should be able to fetch paginated questions answers', async () => {
     for (let i = 1; i <= 22; i++) {
       await inMemoryAnswersRepository.create(makeAnswer({
         questionId: new UniqueEntityId('question-1')
