@@ -1,8 +1,8 @@
 import { randomUUID } from 'node:crypto'
 import { Slug } from './value-objects/slug'
 import dayjs from 'dayjs'
-import { UniqueEntityId } from "../../../../core/entities/unique-entity-id"
-import { Optional } from '../../../../core/types/optional'
+import { UniqueEntityId } from "@/core/entities/unique-entity-id"
+import { Optional } from '@/core/types/optional'
 import { AggregateRoot } from '@/core/entities/aggregate-root'
 import { QuestionAttachment } from './question-attachment'
 import { QuestionAttachmentList } from './question-attachment-list'

@@ -1,7 +1,7 @@
 
 
 import { Either, right } from '@/core/either';
-import { UniqueEntityId } from '../../../../core/entities/unique-entity-id';
+import { UniqueEntityId } from '@/core/entities/unique-entity-id';
 import { Notification } from '../../enterprise/entities/notification';
 import { NotificationRepository } from '../repositories/notifications-repository';
 

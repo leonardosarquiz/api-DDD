@@ -2,8 +2,8 @@
 import { Either, left, right } from '@/core/either';
 import { Question } from '../../enterprise/entities/question';
 import { QuestionRepository } from '../repositories/questions-repository';
-import { NotAllowedError } from './errors/not-allowed-error';
-import { ResourceNotFoundError } from './errors/resource-not-found-error';
+import { NotAllowedError } from '@/core/errors/errors/not-allowed-error';
+import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error';
 import { QuestionAttachmentsRepository } from '../repositories/question-attachments-repository';
 import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list';
 import { QuestionAttachment } from '../../enterprise/entities/question-attachment';
@@ -55,11 +55,11 @@ export class EditQuestionUseCase {
 
 
     questionAttachmentList.update(questionAttachments)
-
+    question.attachments = questionAttachmentList
     question.title = title
     question.content = content
 
-    question.attachments = questionAttachmentList
+
 
 
     await this.questionsRepository.save(question)
